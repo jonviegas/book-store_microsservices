@@ -1,0 +1,47 @@
+resilience4j:
+  retry:
+    instances:
+      book-service:
+        maxAttempts: 5
+        waitDuration: 1000
+        enableExponentialBackoff: true
+  ratelimiter:
+    instances:
+      book-service:
+        limitForPeriod: 5
+        limitRefreshPeriod: 10000
+  bulkhead:
+    instances:
+      book-service:
+        maxConcurrentCalls: 2
+server:
+  port: 8100
+springdoc:
+  api-docs:
+    path: books/v3/api-docs
+spring:
+  application:
+    name: book-service
+  sleuth:
+    sampler:
+      probability: 1.0
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  flyway:
+    sql-migration-prefix: V
+    repeatable-sql-migration-prefix: R
+    sql-migration-separator: _
+    sql-migration-suffixes: .sql
+  jackson:
+    default-property-inclusion: NON_NULL
+    serialization:
+      fail-on-empty-beans: false
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  profiles:
+    active:
+    - prod

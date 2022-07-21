@@ -1,0 +1,27 @@
+server:
+  port: 8000
+springdoc:
+  api-docs:
+    path: conversion/v3/api-docs
+spring:
+  application:
+    name: conversion-service
+  sleuth:
+    sampler:
+      probability: 1.0
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  flyway:
+    sql-migration-prefix: V
+    repeatable-sql-migration-prefix: R
+    sql-migration-separator: _
+    sql-migration-suffixes: .sql
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  profiles:
+    active:
+    - prod

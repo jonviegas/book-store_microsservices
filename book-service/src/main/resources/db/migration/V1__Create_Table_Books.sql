@@ -1,0 +1,8 @@
+CREATE TABLE books (
+    `id` INT(10) PRIMARY KEY AUTO_INCREMENT UNIQUE,
+    `author` LONGTEXT NOT NULL,
+    `launch_date` DATETIME(6) NOT NULL,
+    `price` DECIMAL(65, 2) NOT NULL,
+    `title` LONGTEXT
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
